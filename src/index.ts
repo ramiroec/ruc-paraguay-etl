@@ -5,6 +5,7 @@ import AdmZip from 'adm-zip';
 import express, { Express } from 'express';
 import { Contribuyente } from './types';
 import router from './routes';
+const cors = require('cors');
 
 // Verifica si se pasó el argumento 'startmeup' al ejecutar el script
 const startmeup = process.argv[2] === 'startmeup';
@@ -20,6 +21,7 @@ const etlSchedule = new CronJob(
 
 // Inicializa la aplicación Express
 const app: Express = express();
+app.use(cors());
 app.use(router);
 
 // Función principal que inicia el servidor web y el proceso ETL
